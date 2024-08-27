@@ -1,0 +1,18 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Leave Application",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "total_leave_days",
+  "is_system_generated": 0,
+  "modified": "2024-08-27 15:55:38.044360",
+  "module": null,
+  "name": "Leave Application-total_leave_days-precision",
+  "property": "precision",
+  "property_type": "Select",
+  "row_name": null,
+  "value": "3"
+ }
+]

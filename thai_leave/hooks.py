@@ -5,6 +5,32 @@ app_description = " Leave Application enhancement for Thailand"
 app_email = "kittiu@ecosoft.co.th"
 app_license = "mit"
 
+# Monkey patching
+# ------------------
+import hrms.hr.doctype.leave_application.leave_application as leave
+import thai_leave.custom.leave_application as thai_leave
+leave.get_number_of_leave_days = thai_leave.get_number_of_leave_days
+
+import hrms.hr.doctype.leave_application.leave_application as leave
+import thai_leave.custom.leave_application as thai_leave
+leave.get_leaves_for_period = thai_leave.get_leaves_for_period
+
+
+fixtures = [
+	{
+		"doctype": "Custom Field",
+		"filters": [["name", "in", (
+            "Leave Application-custom_hours",
+        )]]
+	},
+	{
+		"doctype": "Property Setter",
+		"filters": [["name", "in", (
+            "Leave Application-total_leave_days-precision",
+        )]]
+	},
+]
+
 # Apps
 # ------------------
 
@@ -129,19 +155,17 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Leave Application": "thai_leave.custom.leave_application.LeaveApplicationThai"
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
 # doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
+# 	"Leave Application": {
+# 		"validate": "thai_leave.custom.leave_application.validate_half_day_hours",
 # 	}
 # }
 
@@ -175,9 +199,9 @@ app_license = "mit"
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "thai_leave.event.get_events"
+# 	"hrms.hr.doctype.leave_application.leave_application.get_number_of_leave_days": "thai_leave.custom.leave_application.get_number_of_leave_days"
 # }
-#
+
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
