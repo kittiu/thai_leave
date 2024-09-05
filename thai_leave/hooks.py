@@ -5,17 +5,6 @@ app_description = " Leave Application enhancement for Thailand"
 app_email = "kittiu@ecosoft.co.th"
 app_license = "mit"
 
-# Monkey patching
-# ------------------
-import hrms.hr.doctype.leave_application.leave_application as leave
-import thai_leave.custom.leave_application as thai_leave
-leave.get_number_of_leave_days = thai_leave.get_number_of_leave_days
-
-import hrms.hr.doctype.leave_application.leave_application as leave
-import thai_leave.custom.leave_application as thai_leave
-leave.get_leaves_for_period = thai_leave.get_leaves_for_period
-
-
 fixtures = [
 	{
 		"doctype": "Custom Field",
