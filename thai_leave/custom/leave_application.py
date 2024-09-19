@@ -1,5 +1,6 @@
 import datetime
 import frappe
+from frappe import _
 from frappe.utils import getdate, date_diff, cint, flt
 from hrms.hr.doctype.leave_application.leave_application import (
     LeaveApplication,
