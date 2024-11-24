@@ -26,6 +26,7 @@ class LeaveApplicationThai(LeaveApplication):
 	def validate_balance_leaves(self):
 		# Patch
 		self.validate_half_day_hours()
+		half_day_hours = self.custom_hours and int(self.custom_hours) or None
 		# --
 		if self.from_date and self.to_date:
 			self.total_leave_days = get_number_of_leave_days(
@@ -35,7 +36,7 @@ class LeaveApplicationThai(LeaveApplication):
 				self.to_date,
 				self.half_day,
 				self.half_day_date,
-				half_day_hours=self.custom_hours  # Patch
+				half_day_hours=half_day_hours  # Patch
 			)
 			
 
@@ -80,7 +81,7 @@ def get_number_of_leave_days(
 	number_of_days = 0
 	if cint(half_day) == 1:
 		if getdate(from_date) == getdate(to_date):
-			# Monkey patch - use hours for half day
+			# --- Monkey patch - use hours for half day
 			number_of_days = (half_day_hours or 4) / 8
 		elif half_day_date and getdate(from_date) <= getdate(half_day_date) <= getdate(to_date):
 			# Monkey patch - use hours for half day
