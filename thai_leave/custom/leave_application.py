@@ -82,10 +82,10 @@ def get_number_of_leave_days(
 	if cint(half_day) == 1:
 		if getdate(from_date) == getdate(to_date):
 			# --- Monkey patch - use hours for half day
-			number_of_days = (half_day_hours or 4) / 8
+			number_of_days = (int(half_day_hours) or 4) / 8
 		elif half_day_date and getdate(from_date) <= getdate(half_day_date) <= getdate(to_date):
 			# Monkey patch - use hours for half day
-			number_of_days = date_diff(to_date, from_date) + (half_day_hours or 4) / 8
+			number_of_days = date_diff(to_date, from_date) + (int(half_day_hours) or 4) / 8
 		else:
 			number_of_days = date_diff(to_date, from_date) + 1
 	else:
