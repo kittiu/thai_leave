@@ -105,6 +105,8 @@ def get_leaves_for_period(
 	to_date: datetime.date,
 	skip_expired_leaves: bool = True,
 ) -> float:
+	x = 1/0
+
 	leave_entries = get_leave_entries(employee, leave_type, from_date, to_date)
 	leave_days = 0
 
