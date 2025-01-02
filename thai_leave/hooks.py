@@ -20,6 +20,8 @@ fixtures = [
 	},
 ]
 
+extend_bootinfo = "thai_leave.startup.boot_session"  # Call following boot_session
+
 # Apps
 # ------------------
 
